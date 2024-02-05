@@ -1,0 +1,12 @@
+@import '../../../assets/styles/variables';
+
+.container{
+  border-radius: 10px;
+  font-size: 18px;
+  background-color: $blue;
+  color: white;
+
+  &:hover{
+    background-color: darken($blue, 10%);
+  }
+}
