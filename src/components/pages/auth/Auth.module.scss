@@ -33,6 +33,55 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      gap: 15px;
+      h3{
+        color: white;
+        font-size: 32px;
+      }
+
+      form{
+
+        .inputsCont{
+          margin-bottom: 25px;
+        }
+        .buttonCont{
+          display: flex;
+          gap: 10px;
+        }
+      }
+      .googleButton{
+        display: flex;
+        align-items: center;
+        background-color: white;
+        width: 280px;
+        border-radius: 10px;
+        padding: 8px;
+        position: relative;
+        span{
+          text-align: center;
+          width: 100%;
+        }
+        &::before{
+          content: '';
+          position: absolute;
+          background: url('../../../assets/icons/google-icon.png') ;
+          background-size: cover;
+          width: 20px;
+          height: 20px;
+          left: 0;
+          margin-left: 10px;
+        }
+        &:hover{
+          outline: solid 2px $blue;
+        }
+        &:focus{
+          outline: solid 2px $blue;
+        }
+      }
+      .divide{
+        color: white;
+      }
     }
   }
 }

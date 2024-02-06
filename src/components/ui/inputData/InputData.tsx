@@ -3,11 +3,11 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 import s from './InputData.module.scss'
 import { UseFormRegister } from 'react-hook-form'
-import {TDataInput} from '../../../../types'
+import {TDataInput} from '../../../types/types'
 
 interface InputProps {
 	register: UseFormRegister<TDataInput>
-	name: string
+	name: 'password' | 'username'
 	options?: {
 		required: string
 		minLength?: {
