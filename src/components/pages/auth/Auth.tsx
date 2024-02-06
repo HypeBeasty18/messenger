@@ -1,35 +1,43 @@
+import FormBtn from 'components/ui/formBtn/FormBtn'
 import InputData from 'components/ui/inputData/InputData'
-import React, { FC } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-
-import { TDataInput } from '../../../../types'
+import { useAuth } from 'hooks/useAuth'
+import { FC, useEffect } from 'react'
 
 import s from './Auth.module.scss'
-import FormBtn from 'components/ui/formBtn/FormBtn'
+import { auth } from 'firebaseConfig/firebase'
+import { useNavigate } from 'react-router-dom'
 
 const Auth: FC = () => {
 	const {
+		setType,
 		register,
 		handleSubmit,
-		reset,
-		formState: { errors }
-	} = useForm<TDataInput>({
-		mode: 'onSubmit'
-	})
+		onSubmit,
+		errors,
+		error,
+		handleGoogle,
+		handleLogout
+	} = useAuth()
 
-	const onSubmit: SubmitHandler<TDataInput> = async userData => {
-		console.log(userData)
+	const navigate = useNavigate()
 
-		reset()
-	}
+	useEffect(() => {
+		if (auth.currentUser?.uid){
+			console.log(auth.currentUser);
+			navigate('/')
+		}
+	},[])
 
 	return (
 		<div className={s.container}>
 			<div className={s.inner}>
 				<header>
 					<img src='/src/assets/icons/logo.png' draggable={false} />
+					<button onClick={() => handleLogout()}>Logout</button>
 				</header>
+
 				<main>
+					<h3>Welcome!</h3>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className={s.inputsCont}>
 							<InputData
@@ -62,16 +70,33 @@ const Auth: FC = () => {
 								placeholder='Enter password'
 							/>
 						</div>
+						{error && <span className='errorData'>{error}</span>}
 
-						<FormBtn
-							text={'SignUp'}
-							type={'submit'}
-							fontSize={'18px'}
-							pInline={'20px'}
-							padding={'10px'}
-							width={'100%'}
-						/>
+						<div className={s.buttonCont}>
+							<FormBtn
+								text={'LogIn'}
+								type={'submit'}
+								fontSize={'18px'}
+								pInline={'20px'}
+								padding={'10px'}
+								width={'100%'}
+								onClick={() => setType('login')}
+							/>
+							<FormBtn
+								text={'SignUp'}
+								type={'submit'}
+								fontSize={'18px'}
+								pInline={'20px'}
+								padding={'10px'}
+								width={'100%'}
+								onClick={() => setType('signup')}
+							/>
+						</div>
 					</form>
+					<span className={s.divide}>or</span>
+					<button className={s.googleButton} onClick={handleGoogle}>
+						<span>Log in with Google</span>
+					</button>
 				</main>
 			</div>
 		</div>
