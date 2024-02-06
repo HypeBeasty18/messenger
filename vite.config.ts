@@ -17,6 +17,8 @@ export default defineConfig({
       store: '/src/store',
       lib: '/src/lib',
       constants: '/src/constants',
+      types: '/src/types',
+      firebaseConfig: '/src/firebaseConfig',
     }
   }
 })

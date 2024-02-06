@@ -32,6 +32,8 @@
       "store/*": ["store/*"],
       "lib/*": ["lib/*"],
       "constants/*": ["constants/*"],
+      "types/*": ["types/*"],
+      "firebaseConfig/*": ["firebaseConfig/*"],
     }
   },
   "include": ["src"],
