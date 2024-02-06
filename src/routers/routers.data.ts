@@ -14,7 +14,7 @@ export const routers = [
 		isAuth: false
 	},
 	{
-		path: '/profile/:id',
+		path: '/profile',
 		component: Profile,
 		isAuth: true
 	}
