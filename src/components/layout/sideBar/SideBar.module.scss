@@ -1,2 +1,33 @@
 @import '../../../assets/styles/variables';
 
+
+.container{
+  max-height: 100vh;
+  width: 300px;
+  border: 1px solid $extra-accent;
+  padding-top: 25px;
+
+  .upInner{
+
+  }
+  .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-inline: 25px;
+
+    h2{
+      font-size: 24px;
+      span{
+        color: $blue;
+      }
+    }
+    .createIcon{
+      font-size: 24px;
+      color: $grey ;
+    }
+  }
+
+  }
+
