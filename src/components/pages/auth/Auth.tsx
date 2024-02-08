@@ -1,11 +1,9 @@
 import FormBtn from 'components/ui/formBtn/FormBtn'
 import InputData from 'components/ui/inputData/InputData'
 import { useAuth } from 'hooks/useAuth'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import s from './Auth.module.scss'
-import { auth } from 'firebaseConfig/firebase'
-import { useNavigate } from 'react-router-dom'
 
 const Auth: FC = () => {
 	const {
@@ -19,21 +17,11 @@ const Auth: FC = () => {
 		handleLogout
 	} = useAuth()
 
-	const navigate = useNavigate()
-
-	useEffect(() => {
-		if (auth.currentUser?.uid){
-			console.log(auth.currentUser);
-			navigate('/')
-		}
-	},[])
-
 	return (
 		<div className={s.container}>
 			<div className={s.inner}>
 				<header>
 					<img src='/src/assets/icons/logo.png' draggable={false} />
-					<button onClick={() => handleLogout()}>Logout</button>
 				</header>
 
 				<main>
