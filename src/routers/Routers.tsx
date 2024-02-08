@@ -1,23 +1,12 @@
 import NotFound from 'components/pages/notFound/NotFound'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from 'firebaseConfig/firebase'
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { routers } from './routers.data'
+import { useAppSelector } from 'hooks/useActions'
 
 const Routers: FC = () => {
-	const [isAuth, setISAuth] = useState(false)
-
-	useEffect(() => {
-		onAuthStateChanged(auth, () => {
-			if (auth.currentUser?.uid) {
-				setISAuth(true)
-			} else {
-				setISAuth(false)
-			}
-		})
-	}, [])
+	const isAuth = useAppSelector(state => state.auth.isAuth)
 
 	return (
 		<BrowserRouter>
