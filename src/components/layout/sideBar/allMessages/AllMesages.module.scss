@@ -39,6 +39,13 @@
 				position: relative;
 				padding: 10px;
 				padding-inline: 20px;
+				img {
+					max-width: 40px;
+					max-height: 40px;
+					min-height: 40px;
+					min-width: 40px;
+					border-radius: 50%;
+				}
 				&:hover {
 					background-color: $extra-accent;
 				}

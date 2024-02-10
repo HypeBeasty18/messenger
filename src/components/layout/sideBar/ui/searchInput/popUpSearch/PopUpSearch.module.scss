@@ -1,79 +1,55 @@
 @import '../../../../../../assets/styles/variables';
 
-.container{
-  display: block;
-  margin-top: 20px;
-  border-radius: $border;
-  width: 100%;
-  z-index: 10;
-  padding: 10px;
-  padding-inline: 0;
-  ul{
-    overflow-y: auto;
-    max-height: 59vh;
-    padding-inline: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    li{
+.button {
+	display: flex;
+	align-items: center;
+	border-radius: $border;
+	gap: 10px;
+	width: 100%;
+	position: relative;
+	padding: 10px;
+	padding-inline: 20px;
+	border-radius: $border;
 
-      button{
-        display: flex;
-        align-items: center;
-        border-radius: $border;
-        gap: 10px;
-        width: 100%;
-        position: relative;
-        padding: 10px;
-        padding-inline: 20px;
-        border-radius: $border;
+	&:hover {
+		background-color: $extra-accent;
+	}
 
-        &:hover{
-          background-color: $extra-accent;
-        }
+	img {
+		max-width: 40px;
+		max-height: 40px;
+		min-height: 40px;
+		min-width: 40px;
+		border-radius: 50%;
+	}
 
-          img{
-            max-width: 40px;
-            max-height: 40px;
-            min-height: 40px;
-            min-width: 40px;
-            border-radius: 50%;
-          }
-  
-        .mInfo{
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 3px;
-  
-          span{
-            &:first-child{
-              font-weight: 500;
-            }
-            &:last-child{
-              font-weight: 400;
-            }
-          }
-        }
-      }
-      
-    }
-  }
+	.mInfo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 3px;
+
+		span {
+			&:first-child {
+				font-weight: 500;
+			}
+			&:last-child {
+				font-weight: 400;
+			}
+		}
+	}
 }
 
-.active{
-  background-color: $extra-accent;
+.active {
+	background-color: $extra-accent;
 }
 
-
-
-::-webkit-scrollbar{
-  width: 2px;
+::-webkit-scrollbar {
+	width: 2px;
 }
-::-webkit-scrollbar-track{
-  background-color: $accent;
+::-webkit-scrollbar-track {
+	background-color: $accent;
 }
-::-webkit-scrollbar-thumb{
-  background-color: $blue;
+::-webkit-scrollbar-thumb {
+	background-color: $blue;
 }
-

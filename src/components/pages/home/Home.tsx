@@ -1,17 +1,16 @@
 import Layout from 'components/layout/Layout'
-import { useAuth } from 'hooks/useAuth'
-import React from 'react'
 
-type Props = {}
+import s from './Home.module.scss'
+import ChatBlock from './chatBlock/ChatBlock'
+import UpChatBlock from './upChatBlock/UpChatBlock'
 
-const Home = (props: Props) => {
-
-
-  const {handleLogout} = useAuth()
-
+const Home = () => {
 	return (
 		<Layout>
-			<button onClick={() => handleLogout()}>Logout</button>
+			<div className={s.container}>
+				<UpChatBlock />
+				<ChatBlock />
+			</div>
 		</Layout>
 	)
 }
