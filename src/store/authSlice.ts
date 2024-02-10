@@ -4,20 +4,19 @@ import Cookies from 'js-cookie'
 
 type State = {
 	isAuth: boolean
-
 }
 
 const initialValue = Cookies.get(AUTH) || false
 
 const initialState: State = {
-	isAuth: initialValue,
+	isAuth: initialValue
 }
 
 const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		login(state, action) {
+		login(state) {
 			state.isAuth = true
 
 			Cookies.set(AUTH, true)
