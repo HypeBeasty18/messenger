@@ -1,0 +1,65 @@
+@import '../../../../../assets/styles/variables';
+
+.container {
+	display: flex;
+	align-items: center;
+	background-color: $extra-accent;
+	padding: 15px;
+	padding-inline: 20px;
+	border-radius: $border;
+	bottom: 0;
+
+	form {
+		display: flex;
+		align-items: center;
+    height: 100%;
+
+		width: 100%;
+		.leftSide {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			input {
+				min-width: 100%;
+			}
+		}
+		.rightSide {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+
+			.filesInput {
+				display: flex;
+        align-items: center;
+				gap: 20px;
+        &::after{
+          content: '';
+          height: 30px;
+          width: 1px;
+          background-color: $grey;
+          margin-right: 20px;
+        }
+			}
+		}
+		img {
+			max-width: 30px;
+			max-height: 30px;
+			min-height: 30px;
+			min-width: 30px;
+			border-radius: 50%;
+		}
+		.inputText {
+			background-color: transparent;
+			color: white;
+		}
+		label {
+			font-size: 22px;
+			cursor: pointer;
+			color: $grey;
+		}
+		button {
+			font-size: 22px;
+			color: $blue;
+		}
+	}
+}
