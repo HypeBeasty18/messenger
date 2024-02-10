@@ -1,15 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar'
-import { FC, useState } from 'react'
+import { useAppSelector } from 'hooks/useActions'
+import { useChatClick } from 'hooks/useChatClick'
+import { FC } from 'react'
 import { IoMdMail } from 'react-icons/io'
-
-import { messages } from '../messages.list'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import s from './AllMesages.module.scss'
 
-type Props = {}
+const AllMessages: FC = () => {
+	const messages = useAppSelector(state => state.messages)
 
-const AllMessages: FC = (props: Props) => {
-	const [current, setCurrent] = useState<number>(0)
+	const handleSelect = useChatClick()
 
 	return (
 		<div className={s.container}>
@@ -21,23 +22,23 @@ const AllMessages: FC = (props: Props) => {
 				<button>...</button>
 			</div>
 			<ul>
-				{messages.map((mPin, index) => (
-					<li key={index}>
-						<button className={index === current ? s.active : undefined}>
-							<Avatar>
-								<AvatarImage src={mPin.img} />
-								<AvatarFallback>{mPin.name}</AvatarFallback>
-							</Avatar>
-
-							{mPin.isOnline && <span className={s.profileOnline}></span>}
-
-							<div className={s.mInfo}>
-								<span>{mPin.name}</span>
-								<span>{mPin.lastMessage}</span>
-							</div>
-						</button>
-					</li>
-				))}
+				{messages &&
+					Object.entries(messages)
+						.sort(([, a], [, b]) => b.date - a.date)
+						.map(([key, message]) => (
+							<li key={key}>
+								<button onClick={() => handleSelect(message.userInfo)}>
+									<Avatar>
+										<AvatarImage src={message.userInfo.photoURL} />
+										<AvatarFallback>icon</AvatarFallback>
+									</Avatar>
+									<div className={s.mInfo}>
+										<span>{message.userInfo.displayName}</span>
+										<span>{message.userInfo.lastMessage?.text}</span>
+									</div>
+								</button>
+							</li>
+						))}
 			</ul>
 		</div>
 	)

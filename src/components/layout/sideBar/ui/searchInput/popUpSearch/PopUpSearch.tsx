@@ -1,34 +1,28 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { DocumentData } from 'firebase/firestore'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
 import s from './PopUpSearch.module.scss'
+import { usePopUpSearch } from './usePopUpSearch'
 
-type Props = {
-	users: DocumentData[]
+interface Props {
+	setValue: React.Dispatch<React.SetStateAction<string>>
+	user: DocumentData
 }
 
-const PopUpSearch: FC<Props> = ({ users }) => {
-	const [current, setCurrent] = useState(1)
+const PopUpSearch: FC<Props> = ({ user, setValue }) => {
+	const handleClick = usePopUpSearch({ user, setValue })
 
 	return (
-		<div className={s.container}>
-			<ul>
-				{users.map(user => (
-					<li key={user.displayName}>
-						<button className={0 === current ? s.active : undefined}>
-							<Avatar>
-								<AvatarImage src={user.photoURL} />
-								<AvatarFallback>{user.displayName}</AvatarFallback>
-							</Avatar>
-							<div className={s.mInfo}>
-								<span>{user.displayName}</span>
-							</div>
-						</button>
-					</li>
-				))}
-			</ul>
-		</div>
+		<button className={s.button} onClick={handleClick}>
+			<Avatar>
+				<AvatarImage src={user.photoURL} />
+				<AvatarFallback>{user.displayName}</AvatarFallback>
+			</Avatar>
+			<div className={s.mInfo}>
+				<span>{user.displayName}</span>
+			</div>
+		</button>
 	)
 }
 

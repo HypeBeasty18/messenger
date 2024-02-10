@@ -1,5 +1,5 @@
 import { useOnClickOutside } from 'hooks/useOnClickOutside'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 
 import s from './SearchInput.module.scss'
@@ -16,15 +16,31 @@ const SearchInput: FC<Props> = ({ setIsFinded }) => {
 		isInitialValue: false
 	})
 	const { users, err } = useSearchInput({ value, setIsShow })
-	setIsFinded(isShow)
+
+	useEffect(() => {
+		setIsFinded(isShow)
+	}, [isShow, setIsFinded])
+
 	return (
 		<div className={s.container} ref={ref}>
 			<div className={s.inputSearch}>
 				<CiSearch className={s.searchIcon} />
-				<input placeholder='Search' onChange={e => setValue(e.target.value)} />
+				<input
+					placeholder='Search'
+					value={value}
+					onChange={e => setValue(e.target.value)}
+				/>
 			</div>
 			{isShow && !err ? (
-				<PopUpSearch users={users} />
+				<div className={s.listCont}>
+					<ul>
+						{users.map(user => (
+							<li key={user.displayName}>
+								<PopUpSearch user={user} setValue={setValue} />
+							</li>
+						))}
+					</ul>
+				</div>
 			) : (
 				err && <span>Error</span>
 			)}
