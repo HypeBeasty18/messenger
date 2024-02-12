@@ -1,24 +1,21 @@
-import { Avatar, AvatarFallback, AvatarImage } from 'components/ui/avatar'
+import QuickMessage from 'components/ui/quickMwssage/QuickMessage'
+import { updatePinnedArray } from 'helpers/updateArray'
 import { useAppSelector } from 'hooks/useActions'
 import { useChatClick } from 'hooks/useChatClick'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { BsFillPinAngleFill } from 'react-icons/bs'
 
 import s from './PinnedMessage.module.scss'
 
 const PinnedMessage: FC = () => {
-	const [current, setCurrent] = useState<number>(1)
 	const messages = useAppSelector(state => state.messages)
 
 	const handleSelect = useChatClick()
-
-	const hasPinnedMes = Object.entries(messages).some(
-		([, message]) => message.isPinned
-	)
+	const filteredMessages = updatePinnedArray(messages)
 
 	return (
 		<>
-			{hasPinnedMes && (
+			{filteredMessages.length > 0 && (
 				<div className={s.container}>
 					<div className={s.upBlock}>
 						<div>
@@ -28,30 +25,12 @@ const PinnedMessage: FC = () => {
 						<button>...</button>
 					</div>
 					<ul>
-						{messages &&
-							Object.entries(messages)
-								.filter(([, message]) => message.isPinned)
-								.sort(([, a], [, b]) => b.date - a.date)
-								.map(([key, message]) => (
-									<li key={key}>
-										<button
-											className={0 === current ? s.active : undefined}
-											onClick={() => handleSelect(message.userInfo)}
-										>
-											<Avatar>
-												<AvatarImage src={message.userInfo.photoURL} />
-												<AvatarFallback>
-													{message.userInfo.displayName}
-												</AvatarFallback>
-											</Avatar>
-
-											<div className={s.mInfo}>
-												<span>{message.userInfo.displayName}</span>
-												<span>{message.lastMessage?.text}</span>
-											</div>
-										</button>
-									</li>
-								))}
+						{filteredMessages &&
+							filteredMessages.map(message => (
+								<li key={message.key}>
+									<QuickMessage message={message} handleSelect={handleSelect} />
+								</li>
+							))}
 					</ul>
 				</div>
 			)}
@@ -59,5 +38,3 @@ const PinnedMessage: FC = () => {
 	)
 }
 export default PinnedMessage
-
-// {mPin.isOnline && <span className={s.profileOnline}></span>}
