@@ -16,8 +16,11 @@ const Routers: FC = () => {
 		const unsub = onAuthStateChanged(auth, user => {
 			if (user) {
 				actions.login()
+				
 			} else {
 				actions.logout()
+				actions.removeCurrentChat()
+				actions.removeMessages()
 			}
 		})
 		return () => {

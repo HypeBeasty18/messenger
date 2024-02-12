@@ -60,6 +60,8 @@ export const useAuth = () => {
 		try {
 			await signOut(auth)
 			actions.logout()
+			actions.removeCurrentChat()
+			actions.removeMessages()
 		} catch (error) {
 			setError(error.message)
 		}
