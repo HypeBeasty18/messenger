@@ -1,0 +1,57 @@
+@import '../../../assets/styles/variables';
+.container {
+	border-radius: $border;
+	display: flex;
+	align-items: center;
+	border-radius: $border;
+	gap: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+	position: relative;
+	padding: 10px;
+	padding-inline: 20px;
+
+	&:hover {
+		background-color: $extra-accent;
+	}
+	img {
+		max-width: 40px;
+		max-height: 40px;
+		min-height: 40px;
+		min-width: 40px;
+		border-radius: 50%;
+	}
+
+	.profileOnline {
+		position: absolute;
+		background-color: rgb(24, 252, 43);
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		bottom: 0;
+		left: 0;
+		margin-bottom: 10px;
+		margin-left: 45px;
+		outline: 1px solid white;
+	}
+
+	.mInfo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 3px;
+
+		span {
+			&:first-child {
+				font-weight: 500;
+				text-align: left;
+			}
+			&:last-child {
+				display: flex;
+				text-align: left;
+				font-weight: 300;
+				word-break: break-word;
+			}
+		}
+	}
+}
