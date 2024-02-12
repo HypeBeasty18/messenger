@@ -13,10 +13,13 @@ const authSlice = createSlice({
 	reducers: {
 		saveMessages(state, action: PayloadAction<{ [key: string]: Chat }>) {
 			return action.payload
+		},
+		removeMessages(state){
+			return {}
 		}
 	}
 })
 
-export const { saveMessages } = authSlice.actions
+export const { saveMessages, removeMessages } = authSlice.actions
 
 export default authSlice.reducer
