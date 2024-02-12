@@ -12,41 +12,50 @@ const PinnedMessage: FC = () => {
 
 	const handleSelect = useChatClick()
 
-	return (
-		<div className={s.container}>
-			<div className={s.upBlock}>
-				<div>
-					<BsFillPinAngleFill />
-					Pinned message
-				</div>
-				<button>...</button>
-			</div>
-			<ul>
-				{messages &&
-					Object.entries(messages)
-						.sort(([, a], [, b]) => b.date - a.date)
-						.map(([key, message]) => (
-							<li key={key}>
-								<button
-									className={0 === current ? s.active : undefined}
-									onClick={() => handleSelect(message.userInfo)}
-								>
-									<Avatar>
-										<AvatarImage src={message.userInfo.photoURL} />
-										<AvatarFallback>
-											{message.userInfo.displayName}
-										</AvatarFallback>
-									</Avatar>
+	const hasPinnedMes = Object.entries(messages).some(
+		([, message]) => message.isPinned
+	)
 
-									<div className={s.mInfo}>
-										<span>{message.userInfo.displayName}</span>
-										<span>{message.userInfo.lastMessage?.text}</span>
-									</div>
-								</button>
-							</li>
-						))}
-			</ul>
-		</div>
+	return (
+		<>
+			{hasPinnedMes && (
+				<div className={s.container}>
+					<div className={s.upBlock}>
+						<div>
+							<BsFillPinAngleFill />
+							Pinned message
+						</div>
+						<button>...</button>
+					</div>
+					<ul>
+						{messages &&
+							Object.entries(messages)
+								.filter(([, message]) => message.isPinned)
+								.sort(([, a], [, b]) => b.date - a.date)
+								.map(([key, message]) => (
+									<li key={key}>
+										<button
+											className={0 === current ? s.active : undefined}
+											onClick={() => handleSelect(message.userInfo)}
+										>
+											<Avatar>
+												<AvatarImage src={message.userInfo.photoURL} />
+												<AvatarFallback>
+													{message.userInfo.displayName}
+												</AvatarFallback>
+											</Avatar>
+
+											<div className={s.mInfo}>
+												<span>{message.userInfo.displayName}</span>
+												<span>{message.lastMessage?.text}</span>
+											</div>
+										</button>
+									</li>
+								))}
+					</ul>
+				</div>
+			)}
+		</>
 	)
 }
 export default PinnedMessage
