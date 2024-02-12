@@ -3,18 +3,5 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	.emptyChat {
-    display: flex;
-		height: 100%;
-		text-align: center;
-    align-items: center;
-    justify-content: center;
-    span{
-      background-color: $extra-accent;
-      padding: 10px;
-      padding-inline: 20px;
-      border-radius: $border;
-    }
-	}
+	height: 90vh;
 }

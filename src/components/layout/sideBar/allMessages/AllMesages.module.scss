@@ -4,6 +4,7 @@
 
 .container {
 	margin-top: 20px;
+	max-width: 300px;
 	.upBlock {
 		display: flex;
 		align-items: center;
@@ -24,6 +25,8 @@
 	}
 
 	ul {
+		display: flex;
+		flex-direction: column;
 		overflow-y: auto;
 		max-height: 58.5vh;
 		padding-inline: 5px;
@@ -39,6 +42,7 @@
 				position: relative;
 				padding: 10px;
 				padding-inline: 20px;
+
 				img {
 					max-width: 40px;
 					max-height: 40px;
@@ -73,7 +77,10 @@
 							font-weight: 500;
 						}
 						&:last-child {
+							display: flex;
+							text-align: left;
 							font-weight: 400;
+							word-break: break-word;
 						}
 					}
 				}

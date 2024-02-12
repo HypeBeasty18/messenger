@@ -1,99 +1,100 @@
 @import '../../../../assets/styles/variables';
 
+.container {
+	margin-top: 20px;
+	max-width: 300px;
+	.upBlock {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: $grey;
+		margin-bottom: 20px;
+		padding-inline: 25px;
+		div {
+			display: flex;
+			gap: 5px;
+			text-transform: uppercase;
+			font-size: 12px;
+		}
+		button {
+			color: white;
+			font-size: 18px;
+		}
+	}
 
-.container{
-  margin-top: 20px;
-  .upBlock{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: $grey;
-    margin-bottom: 20px;
-    padding-inline: 25px;
-    div{
-      display: flex;
-      gap: 5px;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-    button{
+	ul {
+		overflow-y: auto;
+		max-height: 59vh;
+		padding-inline: 5px;
+		li {
+			button {
+				display: flex;
+				align-items: center;
+				border-radius: $border;
+				gap: 10px;
+				width: 100%;
+				margin-bottom: 10px;
+				position: relative;
+				padding: 10px;
+				padding-inline: 20px;
+				border-radius: $border;
+				img {
+					max-width: 40px;
+					max-height: 40px;
+					min-height: 40px;
+					min-width: 40px;
+					border-radius: 50%;
+				}
+				&:hover {
+					background-color: $extra-accent;
+				}
+				.profileOnline {
+					position: absolute;
+					background-color: rgb(24, 252, 43);
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					bottom: 0;
+					left: 0;
+					margin-bottom: 10px;
+					margin-left: 45px;
+					outline: 1px solid white;
+				}
 
-      color: white;
-      font-size: 18px;
-    }
-  }
+				.mInfo {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 3px;
 
-  ul{
-    overflow-y: auto;
-    max-height: 59vh;
-    padding-inline: 5px;
-    li{
-
-      button{
-        display: flex;
-        align-items: center;
-        border-radius: $border;
-        gap: 10px;
-        width: 100%;
-        margin-bottom: 10px;
-        position: relative;
-        padding: 10px;
-        padding-inline: 20px;
-        border-radius: $border;
-        &:hover{
-          background-color: $extra-accent;
-        }
-        .profileOnline{
-          position: absolute;
-          background-color: rgb(24, 252, 43);
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          bottom: 0;
-          left: 0;
-          margin-bottom: 10px;
-          margin-left: 45px;
-          outline: 1px solid white;
-  
-        }
-  
-        .mInfo{
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 3px;
-  
-          span{
-            &:first-child{
-              font-weight: 500;
-            }
-            &:last-child{
-              font-weight: 400;
-            }
-          }
-        }
-      }
-      
-    }
-  }
-  
+					span {
+						&:first-child {
+							font-weight: 500;
+						}
+						&:last-child {
+							font-weight: 400;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
-.active{
-  background-color: $extra-accent;
+.active {
+	background-color: $extra-accent;
 }
 
+::-webkit-scrollbar {
+	width: 2px;
+}
+::-webkit-scrollbar-track {
+	background-color: $accent;
+}
+::-webkit-scrollbar-thumb {
+	background-color: $blue;
+}
 
-::-webkit-scrollbar{
-  width: 2px;
-}
-::-webkit-scrollbar-track{
-  background-color: $accent;
-}
-::-webkit-scrollbar-thumb{
-  background-color: $blue;
-}
-
-.active{
-  background-color: $extra-accent;
+.active {
+	background-color: $extra-accent;
 }

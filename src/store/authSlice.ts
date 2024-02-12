@@ -18,7 +18,6 @@ const authSlice = createSlice({
 	reducers: {
 		login(state) {
 			state.isAuth = true
-
 			Cookies.set(AUTH, true)
 		},
 

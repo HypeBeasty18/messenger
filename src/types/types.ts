@@ -28,11 +28,13 @@ export interface Chat {
 		uid:string
 		photoURL: string
 		displayName: string
-		lastMessage?: {
-			text: string
-		}
+
 	}
 	date: number
+	lastMessage?: {
+		text: string
+	}
+	isPinned?: boolean
 }
 
 export type TUserSelect = {
