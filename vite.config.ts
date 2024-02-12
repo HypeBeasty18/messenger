@@ -19,6 +19,7 @@ export default defineConfig({
       constants: '/src/constants',
       types: '/src/types',
       firebaseConfig: '/src/firebaseConfig',
+      helpers: '/src/helpers',
     }
   }
 })

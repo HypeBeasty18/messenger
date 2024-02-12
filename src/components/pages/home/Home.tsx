@@ -1,14 +1,13 @@
 import Layout from 'components/layout/Layout'
 import { useAppSelector } from 'hooks/useActions'
+import { FC } from 'react'
 
 import s from './Home.module.scss'
 import ChatBlock from './chatBlock/ChatBlock'
 import UpChatBlock from './upChatBlock/UpChatBlock'
-import { FC } from 'react'
 
-const Home:FC = () => {
+const Home: FC = () => {
 	const chatId = useAppSelector(state => state.currentChat.chatId)
-	
 
 	return (
 		<Layout>

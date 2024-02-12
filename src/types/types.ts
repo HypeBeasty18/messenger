@@ -1,20 +1,21 @@
-import { DocumentData } from 'firebase/firestore'
-
 export type TDataInput = {
 	username: string
 	password: string
 }
 
 export type TMessage = {
-	name: string
-	lastMessage: string
-	img: string
-	isOnline: boolean
-	isPinned: boolean
+	date: number
+	id: string
+	senderId: string
+	text: string
+	img?:string
 }
 
 export type TUser = {
-	user: DocumentData
+	displayName: string
+	photoURL: string
+	uid: string
+	username: string
 }
 
 export type TInputMessage = {
@@ -25,10 +26,9 @@ export type TInputMessage = {
 
 export interface Chat {
 	userInfo: {
-		uid:string
+		uid: string
 		photoURL: string
 		displayName: string
-
 	}
 	date: number
 	lastMessage?: {
@@ -38,7 +38,7 @@ export interface Chat {
 }
 
 export type TUserSelect = {
-	uid:string
+	uid: string
 	photoURL: string
 	displayName: string
 	lastMessage?: {

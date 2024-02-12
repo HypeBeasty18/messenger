@@ -1,13 +1,6 @@
 @import '../../../../../../assets/styles/variables';
 
 .containerOwn {
-	img {
-		max-width: 30px;
-		max-height: 30px;
-		min-height: 30px;
-		min-width: 30px;
-		border-radius: 50%;
-	}
 }
 
 .innerSame {
@@ -26,6 +19,7 @@
 
 		.lowBlock {
 			display: flex;
+			flex-direction: column;
 			justify-content: flex-end;
 			background-color: $extra-accent;
 			padding: 10px;
@@ -49,6 +43,16 @@
 	}
 }
 
+.image {
+	img {
+		max-width: 30px;
+		max-height: 30px;
+		min-height: 30px;
+		min-width: 30px;
+		border-radius: 50%;
+	}
+}
+
 .innerNotSame {
 	display: flex;
 	justify-content: flex-end;
@@ -68,6 +72,7 @@
 
 		.lowBlock {
 			display: flex;
+			flex-direction: column;
 			justify-content: flex-end;
 			background-color: $extra-accent;
 			padding: 10px;
@@ -86,7 +91,6 @@
 				display: flex;
 				align-items: flex-end;
 				white-space: nowrap;
-
 			}
 		}
 	}

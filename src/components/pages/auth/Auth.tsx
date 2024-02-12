@@ -14,7 +14,6 @@ const Auth: FC = () => {
 		errors,
 		error,
 		handleGoogle,
-		handleLogout
 	} = useAuth()
 
 	return (
