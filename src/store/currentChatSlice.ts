@@ -7,16 +7,12 @@ interface currentChat {
 		uid: string
 		photoURL: string
 		displayName: string
-	}
+	} | null
 }
 
 const initialState: currentChat = {
 	chatId: null,
-	user: {
-		uid: '',
-		photoURL: '',
-		displayName: ''
-	}
+	user: null
 }
 
 const authSlice = createSlice({
@@ -30,14 +26,15 @@ const authSlice = createSlice({
 					auth.currentUser.uid > action.payload.uid
 						? auth.currentUser.uid + action.payload.uid
 						: action.payload.uid + auth.currentUser.uid
-        console.log(state.user, state.chatId);
-        
 			}
 		},
-
+		removeCurrentChat(state) {
+			state.chatId = null
+			state.user = null
+		}
 	}
 })
 
-export const { saveCurrentChat } = authSlice.actions
+export const { saveCurrentChat, removeCurrentChat } = authSlice.actions
 
 export default authSlice.reducer
