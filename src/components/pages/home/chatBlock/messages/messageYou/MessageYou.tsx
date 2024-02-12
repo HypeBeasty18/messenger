@@ -1,54 +1,29 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { auth } from 'firebaseConfig/firebase'
+import { CalculateDate } from 'helpers/calculateDate'
 import { useAppSelector } from 'hooks/useActions'
 import { FC, useEffect, useRef } from 'react'
+import { TMessage } from 'types/types'
 
 import s from './MessageYou.module.scss'
 
 type Props = {
-	message: {
-		date: {
-			seconds: number
-			nanoseconds: number
-		}
-		id: string
-		senderId: string
-		text: string
-	}
+	message: TMessage
 	isNextSameRender: boolean
 }
 
 const MessageYou: FC<Props> = ({ message, isNextSameRender }) => {
 	const chatUser = useAppSelector(state => state.currentChat.user)
 
-	const ref = useRef()
+	const ref = useRef<HTMLDivElement | null>(null)
 
 	useEffect(() => {
-		ref.current.scrollIntoView({ behavior: 'smooth' })
+		{
+			ref.current && ref.current.scrollIntoView({ behavior: 'smooth' })
+		}
 	}, [message])
-	const messageDate = new Date(
-		message.date.seconds * 1000 + message.date.nanoseconds / 1000000
-	)
 
-	const currentDate = new Date()
-
-	let formattedDate: string
-
-	if (
-		messageDate.getDate() === currentDate.getDate() &&
-		messageDate.getMonth() === currentDate.getMonth() &&
-		messageDate.getFullYear() === currentDate.getFullYear()
-	) {
-		formattedDate = messageDate.toLocaleTimeString([], {
-			hour: '2-digit',
-			minute: '2-digit'
-		})
-	} else {
-		formattedDate = messageDate.toLocaleDateString([], {
-			day: 'numeric',
-			month: 'short'
-		})
-	}
+	const formattedDate = CalculateDate(message)
 
 	return (
 		<div className={s.containerSomebody} ref={ref}>
@@ -57,6 +32,7 @@ const MessageYou: FC<Props> = ({ message, isNextSameRender }) => {
 					<div className={s.innerSame}>
 						<div className={s.mesInfo}>
 							<div className={s.lowBlock}>
+								{message.img && <img src={message.img} />}
 								<p className={s.textMes}>{message.text}</p>
 								<span>{formattedDate}</span>
 							</div>
@@ -72,7 +48,7 @@ const MessageYou: FC<Props> = ({ message, isNextSameRender }) => {
 									src={
 										message.senderId === auth.currentUser?.uid
 											? auth.currentUser.photoURL
-											: chatUser.photoURL
+											: chatUser && chatUser.photoURL
 									}
 								/>
 								<AvatarFallback>icon</AvatarFallback>
@@ -80,6 +56,7 @@ const MessageYou: FC<Props> = ({ message, isNextSameRender }) => {
 						</div>
 						<div className={s.mesInfo}>
 							<div className={s.lowBlock}>
+								{message.img && <img src={message.img} />}
 								<p className={s.textMes}>{message.text}</p>
 								<span>{formattedDate}</span>
 							</div>
