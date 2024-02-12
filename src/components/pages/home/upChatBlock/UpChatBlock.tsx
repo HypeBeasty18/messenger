@@ -2,18 +2,22 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { LuPhone, LuSearch, LuSettings, LuVideo } from 'react-icons/lu'
 
 import s from './UpChatBlock.module.scss'
+import { useAppSelector } from 'hooks/useActions'
+import { FC } from 'react'
 
-type Props = {}
 
-const UpChatBlock = (props: Props) => {
+const UpChatBlock:FC = () => {
+
+	const userChat = useAppSelector(state => state.currentChat.user)
+
 	return (
 		<div className={s.container}>
 			<div className={s.profileInfo}>
 				<Avatar>
-					<AvatarImage src='/src/assets/icons/guessProfile.svg' />
+					<AvatarImage src={userChat?.photoURL} />
 					<AvatarFallback>icon</AvatarFallback>
 				</Avatar>
-				<p>John</p>
+				<p>{userChat?.displayName}</p>
 			</div>
 			<div className={s.chatSettings}>
 				<ul>
