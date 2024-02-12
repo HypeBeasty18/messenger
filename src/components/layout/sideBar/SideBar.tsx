@@ -1,36 +1,18 @@
-import { doc, onSnapshot } from 'firebase/firestore'
-import { auth, db } from 'firebaseConfig/firebase'
-import { useActions, useAppSelector } from 'hooks/useActions'
-import { FC, useEffect, useState } from 'react'
+import {  useAppSelector } from 'hooks/useActions'
+import { FC, useState } from 'react'
 import { PiNotePencil } from 'react-icons/pi'
 
 import s from './SideBar.module.scss'
 import AllMessages from './allMessages/AllMessages'
 import PinnedMessage from './pinnedMesssage/PinnedMessage'
-import SearchInput from './ui/searchInput/SearchInput'
+import SearchInput from './searchInput/SearchInput'
+import { useSideBar } from './useSideBar'
 
 const SideBar: FC = () => {
 	const [isFinded, setIsFinded] = useState<boolean>(false)
 
-	const actions = useActions()
 	const messages = useAppSelector(state => state.messages)
-
-	useEffect(() => {
-		const getChats = () => {
-			if (auth.currentUser) {
-				return onSnapshot(doc(db, 'userChats', auth.currentUser.uid), doc => {
-					const data = doc.data()
-					if (data) {
-						actions.saveMessages(data)
-					}
-				})
-			}
-		}
-		const unsubscribe = getChats()
-		return () => {
-			unsubscribe
-		}
-	}, [auth.currentUser])
+	useSideBar()
 
 	return (
 		<div className={s.container}>
