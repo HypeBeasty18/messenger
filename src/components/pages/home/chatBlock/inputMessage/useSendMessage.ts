@@ -18,13 +18,12 @@ export const useSendMessage = () => {
 
 	const currentChat = useAppSelector(state => state.currentChat)
 
-	const { register, handleSubmit, reset } = useForm<TInputMessage>({
+	const { register, handleSubmit, reset, setFocus } = useForm<TInputMessage>({
 		mode: 'onSubmit'
 	})
 
 	const onSubmit: SubmitHandler<TInputMessage> = async userData => {
 		if (filesRef.current && currentChat.chatId) {
-
 			const storageRef = ref(storage, uuid())
 			const uploadTask = uploadBytesResumable(storageRef, filesRef.current)
 
@@ -82,7 +81,7 @@ export const useSendMessage = () => {
 	}
 
 	return useMemo(
-		() => ({ handleSubmit, onSubmit, register, filesRef }),
+		() => ({ handleSubmit, onSubmit, register, filesRef, setFocus }),
 		[register, onSubmit]
 	)
 }
