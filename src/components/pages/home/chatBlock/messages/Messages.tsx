@@ -1,27 +1,15 @@
 import { doc, onSnapshot } from 'firebase/firestore'
 import { auth, db } from 'firebaseConfig/firebase'
 import { useAppSelector } from 'hooks/useActions'
-import { useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { TMessage } from 'types/types'
 
 import s from './Messages.module.scss'
 import MessageMe from './messageMe/MessageMe'
 import MessageYou from './messageYou/MessageYou'
 
-type TMessage = {
-	m: {
-		date: {
-			seconds: number
-			nanoseconds: number
-		}
-		id: string
-		senderId: string
-		text: string
-	}
-}
-
-const Messages = () => {
-	const [messages, setMessages] = useState<[]>([])
-	const [prevSenderId, setPrevSenderId] = useState<string>('')
+const Messages: FC = () => {
+	const [messages, setMessages] = useState<TMessage[] | []>([])
 	const chatId = useAppSelector(state => state.currentChat.chatId)
 
 	const currentRef = useRef('')
@@ -54,21 +42,13 @@ const Messages = () => {
 					}
 
 					return (
-						<>
+						<React.Fragment key={m.date}>
 							{auth.currentUser && auth.currentUser.uid === m.senderId ? (
-								<MessageMe
-									message={m}
-									key={index}
-									isNextSameRender={isNextSameRender}
-								/>
+								<MessageMe message={m} isNextSameRender={isNextSameRender} />
 							) : (
-								<MessageYou
-									message={m}
-									key={index}
-									isNextSameRender={isNextSameRender}
-								/>
+								<MessageYou message={m} isNextSameRender={isNextSameRender} />
 							)}
-						</>
+						</React.Fragment>
 					)
 				})}
 		</div>
