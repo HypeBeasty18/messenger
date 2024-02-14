@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { FC } from 'react'
 import { Chat, TUserSelect } from 'types/types'
 
 import s from './QuickMessage.module.scss'
+import Avatar from '../Avatar'
 
 interface Props {
 	message: Chat
@@ -15,10 +15,8 @@ const QuickMessage: FC<Props> = ({ message, handleSelect }) => {
 			onClick={() => handleSelect(message.userInfo)}
 			className={s.container}
 		>
-			<Avatar>
-				<AvatarImage src={message.userInfo.photoURL} />
-				<AvatarFallback>icon</AvatarFallback>
-			</Avatar>
+			<Avatar img={message.userInfo.photoURL} size={'40'}/>
+
 			<div className={s.mInfo}>
 				<span>{message.userInfo.displayName}</span>
 				<span>{message.lastMessage?.text}</span>
