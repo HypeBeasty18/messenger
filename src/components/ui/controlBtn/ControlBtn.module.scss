@@ -1,0 +1,12 @@
+@import '../../../assets/styles/variables';
+
+.icon {
+	color: $grey;
+	font-size: 32px;
+	transition: 0.2s all;
+	cursor: pointer;
+
+	&:hover {
+		color: $blue;
+	}
+}
