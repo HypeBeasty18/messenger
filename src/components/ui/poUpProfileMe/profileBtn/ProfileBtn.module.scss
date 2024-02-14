@@ -1,0 +1,42 @@
+@import '../../../../assets/styles/variables';
+
+.container {
+	display: flex;
+	height: 50px;
+	align-items: center;
+	padding: 30px;
+	padding-inline: 15px;
+	border-radius: $border;
+	margin-inline: 5px;
+	.inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		.nameBtn {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			font-size: 16px;
+			.icon {
+				font-size: 18px;
+			}
+		}
+		span {
+			margin-top: 3px;
+			font-weight: 600;
+      font-size: 18px;
+		}
+
+		img {
+			max-width: 50px;
+			max-height: 50px;
+			min-height: 50px;
+			min-width: 50px;
+			border-radius: 50%;
+		}
+	}
+	&:hover {
+		background-color: $extra-accent;
+	}
+}
