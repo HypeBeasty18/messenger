@@ -12,6 +12,7 @@ const SideBar: FC = () => {
 	const [isFinded, setIsFinded] = useState<boolean>(false)
 
 	const messages = useAppSelector(state => state.messages)
+	
 	useSideBar()
 
 	return (
