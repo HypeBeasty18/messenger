@@ -8,7 +8,7 @@ type Props = {
 const Avatar: FC<Props> = ({ img, size }) => {
 	return (
 		<img
-			className={`w-[${size}px] h-[${size}px] rounded-full object-cover`}
+			className={`max-h-10 max-w-[${size}px] max-h-[${size}px]  rounded-full object-cover`}
 			src={img ? img : 'icon'}
 		/>
 	)
